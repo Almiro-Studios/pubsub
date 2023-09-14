@@ -1,4 +1,3 @@
-import { io } from 'socket.io-client'
 import PubSub from './pubsub'
 
 const pubsub = PubSub.connect('http://127.0.0.1:8102')

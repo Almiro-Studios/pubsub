@@ -29,6 +29,11 @@ const handleUnsubscribe = async (socket: Socket, topic: string): Promise<void> =
 };
 
 const handleMessage = async ({ topic, data }: { topic: string; data: string }): Promise<void> => {
+  if( topic.includes('/') ){
+    data = [topic.toString(), data].join('|')
+    topic = topic.split('/')[0];
+  }
+
   try {
     await pubClient.publish(topic, data);
   } catch (err) {
